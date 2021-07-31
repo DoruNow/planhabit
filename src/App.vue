@@ -1,27 +1,23 @@
 <template>
-  <div id="app">
-    <StartComponent />
-  </div>
+  <v-app>
+    <v-main>
+      <StartComponent />
+    </v-main>
+  </v-app>
 </template>
 
 <script>
-import StartComponent from "./components/StartComponent.vue";
+import StartComponent from "./components/StartComponent";
 
 export default {
   name: "App",
+
   components: {
     StartComponent,
   },
+
+  data: () => ({
+    //
+  }),
 };
 </script>
-
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
