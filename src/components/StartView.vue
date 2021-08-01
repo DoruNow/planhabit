@@ -8,9 +8,14 @@
       <v-divider></v-divider>
 
       <v-list>
-        <v-list-item v-for="[icon, text] in links" :key="icon" link  @click="selected = text">
+        <v-list-item
+          v-for="text in categories"
+          :key="text"
+          link
+          @click="selected = text"
+        >
           <v-list-item-icon>
-            <v-icon>{{ icon }}</v-icon>
+            <v-icon></v-icon>
           </v-list-item-icon>
 
           <v-list-item-content>
@@ -25,7 +30,7 @@
         <v-row>
           <v-col cols="12">
             <transition name="component-fade" mode="out-in" :appear="true">
-                <component :is="selected"></component>
+              <component :is="selected"></component>
             </transition>
           </v-col>
         </v-row>
@@ -38,10 +43,10 @@
 import Start from "./Start";
 import Behavior from "./Behavior";
 export default {
-  components: {Start, Behavior},
+  components: { Start, Behavior },
   data: () => ({
     drawer: null,
-    selected: 'Start',
+    selected: "Start",
     categories: [
       "Start",
       "Behavior",
@@ -57,19 +62,12 @@ export default {
     ],
     icons: ["mdi-inbox-arrow-down"],
   }),
-  computed: {
-    links() {
-      const links = [];
-      this.categories.forEach((category) => {
-        links.push([this.icons[0], category]);
-      });
-      return links;
-    },
-  },
 };
 </script>
 
 <style lang="sass" scoped>
+.v-list-item__icon
+  margin: 0!important
 .v-main
   padding: 0px 10px!important
 .more
