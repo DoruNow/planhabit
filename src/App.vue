@@ -1,19 +1,19 @@
 <template>
   <v-app>
     <v-main>
-      <StartComponent />
+      <StartView />
     </v-main>
   </v-app>
 </template>
 
 <script>
-import StartComponent from "./components/StartComponent";
+import StartView from "./components/StartView";
 
 export default {
   name: "App",
 
   components: {
-    StartComponent,
+    StartView,
   },
 
   data: () => ({
