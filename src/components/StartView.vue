@@ -1,10 +1,7 @@
 <template>
   <v-app id="inspire">
     <v-navigation-drawer v-model="drawer" app>
-      <v-sheet color="grey lighten-4" class="pa-4">
-        <v-avatar class="mb-4" color="grey darken-1" size="64"></v-avatar>
-      </v-sheet>
-
+      <h2>PlanHabits.com</h2>
       <v-divider></v-divider>
 
       <v-list>
@@ -30,7 +27,10 @@
         <v-row>
           <v-col cols="12">
             <transition name="component-fade" mode="out-in" :appear="true">
-              <component :is="selected"></component>
+              <component
+                :is="selected"
+                v-on:nextStep="nextStep($event)"
+              ></component>
             </transition>
           </v-col>
         </v-row>
@@ -42,8 +42,9 @@
 <script>
 import Start from "./Start";
 import Behavior from "./Behavior";
+import Listing from "./Listing";
 export default {
-  components: { Start, Behavior },
+  components: { Start, Behavior, Listing },
   data: () => ({
     drawer: null,
     selected: "Start",
@@ -59,9 +60,15 @@ export default {
       "Track",
       "Repeat",
       "End",
+      "Settings",
+      "Feedback",
     ],
-    icons: ["mdi-inbox-arrow-down"],
   }),
+  methods: {
+    nextStep(step) {
+      this.selected = step;
+    },
+  },
 };
 </script>
 

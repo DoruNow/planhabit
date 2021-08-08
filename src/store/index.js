@@ -4,8 +4,14 @@ import Vuex from "vuex";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {},
-  mutations: {},
+  state: {
+    behaviorList: [],
+  },
+  mutations: {
+    updateBehaviorList(state, payload) {
+      state.behaviorList.push(payload);
+    },
+  },
   actions: {},
   modules: {},
 });
