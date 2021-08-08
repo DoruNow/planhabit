@@ -1,72 +1,78 @@
 <template>
-  <v-container>
-    <v-card>
-      <v-card-title class="indigo white--text text-h4">
-        Where are we at right now?
-      </v-card-title>
-      <v-row>
-        <v-col>
-          <div>
-            <v-card-text class="font-weight-medium text-subtitle-1">
-              Planning the future is sometimes easier when we understand the
-              present. Starting small is very important.
-            </v-card-text>
-            <v-card-text class="text-subtitle-1">
-              Let's write down some habits we already have in place, in the
-              order of their occurence.
-            </v-card-text>
-            <v-card-text class="text-subtitle-1">
-              Let's start by focusing on a part of your day you want to improve.
-              Choose a part of the day where your schedule is the most
-              structured and can be improved. I guess for most of us mornings
-              are a good candidate.
-            </v-card-text>
-            <v-card-text class="d-flex flex-column">
-              <v-text-field
-                :label="label"
-                v-model="nextHabit.value"
-              ></v-text-field>
-              <v-btn color="success" @click="saveHabit(nextHabit)">
-                Save
+  <v-row>
+    <v-col>
+      <div>
+        <v-card-text class="font-weight-medium text-subtitle-1">
+          Planning the future is sometimes easier when we understand the
+          present. Starting small is very important.
+        </v-card-text>
+        <v-card-text class="text-subtitle-1">
+          Let's write down some habits we already have in place, in the order of
+          their occurence.
+        </v-card-text>
+        <v-card-text class="text-subtitle-1">
+          Let's start by focusing on a part of your day you want to improve.
+          Choose a part of the day where your schedule is the most structured
+          and can be improved. I guess for most of us mornings are a good
+          candidate.
+        </v-card-text>
+        <v-card-text class="d-flex flex-column">
+          <v-text-field
+            :label="label"
+            v-model="nextHabit.value"
+            v-on:keyup.enter="saveHabit(nextHabit)"
+            autocomplete="off"
+          ></v-text-field>
+          <v-row>
+            <v-col md="8" offset-md="2" class="d-flex justify-space-around">
+              <v-btn
+                elevation="4"
+                large
+                rounded
+                color="secondary"
+                @click="$store.commit('resetBehaviorList')"
+                v-if="isBehaviorList"
+              >
+                Reset
               </v-btn>
-            </v-card-text>
-          </div>
-        </v-col>
-        <v-col>
-          <v-list class="d-flex flex-column justify-center">
-            <span class="text-h5">Current Habit List</span>
-            <v-list-item
-              v-for="habit in this.$store.state.behaviorList"
-              :key="habit.position"
-            >
-              {{ habit.value }}
-            </v-list-item>
-          </v-list>
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col md="1" offset-md="10">
-          <v-btn color="success" @click="$emit('nextStep', 'Listing')"
-            >next</v-btn
-          >
-        </v-col>
-      </v-row>
-    </v-card>
-  </v-container>
+              <!-- <v-btn
+                elevation="4"
+                large
+                rounded
+                color="success"
+                @click="saveHabit(nextHabit)"
+              >
+                Save
+              </v-btn> -->
+            </v-col>
+          </v-row>
+        </v-card-text>
+      </div>
+    </v-col>
+    <v-col v-if="isBehaviorList">
+      <v-list class="d-flex flex-column justify-center">
+        <span class="text-h5">Current Habit List</span>
+        <v-list-item v-for="habit in behaviorList" :key="habit.position">
+          {{ habit.id }}. {{ habit.value }}
+        </v-list-item>
+      </v-list>
+    </v-col>
+  </v-row>
 </template>
 <script>
 export default {
   data() {
     return {
-      behaviorList: {},
-      nextHabit: {},
+      nextHabit: { value: "" },
     };
   },
   methods: {
     saveHabit() {
+      if (this.nextHabit.value === "") return;
       this.$store.commit("updateBehaviorList", {
-        postion: this.$store.state.behaviorList.length,
-        label: `Habit no. ${this.$store.state.behaviorList.length}`,
+        id: this.behaviorList.length + 1,
+        postion: this.behaviorList.length,
+        label: `Habit no. ${this.behaviorList.length}`,
         value: this.nextHabit.value,
       });
       this.nextHabit.value = "";
@@ -74,7 +80,15 @@ export default {
   },
   computed: {
     label() {
-      return `Habit no. ${this.$store.state.behaviorList.length + 1}`;
+      let label = `Habit no. ${this.behaviorList.length + 1}`;
+      if (!this.isBehaviorList) label = "Type in your habit then hit enter";
+      return label;
+    },
+    behaviorList() {
+      return this.$store.state.behaviorList;
+    },
+    isBehaviorList() {
+      return this.behaviorList.length ? true : false;
     },
   },
 };

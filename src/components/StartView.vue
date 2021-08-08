@@ -6,17 +6,17 @@
 
       <v-list>
         <v-list-item
-          v-for="text in categories"
-          :key="text"
+          v-for="category in categories"
+          :key="category.name"
           link
-          @click="selected = text"
+          @click="selected = category"
         >
           <v-list-item-icon>
             <v-icon></v-icon>
           </v-list-item-icon>
 
           <v-list-item-content>
-            <v-list-item-title>{{ text }}</v-list-item-title>
+            <v-list-item-title>{{ category.name }}</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
@@ -27,10 +27,42 @@
         <v-row>
           <v-col cols="12">
             <transition name="component-fade" mode="out-in" :appear="true">
-              <component
-                :is="selected"
-                v-on:nextStep="nextStep($event)"
-              ></component>
+              <v-container>
+                <v-card>
+                  <v-card-title class="indigo white--text text-h4">
+                    {{ selected.title }}
+                  </v-card-title>
+                  <component :is="selected.component"></component>
+                  <v-row>
+                    <v-col
+                      md="4"
+                      offset-md="8"
+                      class="d-flex justify-space-around"
+                    >
+                      <v-btn
+                        elevation="4"
+                        large
+                        rounded
+                        color="success"
+                        @click="nextStep(0)"
+                        v-if="showPreviousButton"
+                      >
+                        prev
+                      </v-btn>
+                      <v-btn
+                        elevation="4"
+                        large
+                        rounded
+                        color="success"
+                        @click="nextStep()"
+                        v-if="showNextButton"
+                      >
+                        next
+                      </v-btn>
+                    </v-col>
+                  </v-row>
+                </v-card>
+              </v-container>
             </transition>
           </v-col>
         </v-row>
@@ -43,30 +75,47 @@
 import Start from "./Start";
 import Behavior from "./Behavior";
 import Listing from "./Listing";
+import categories from "./Categories";
+
 export default {
   components: { Start, Behavior, Listing },
   data: () => ({
     drawer: null,
-    selected: "Start",
-    categories: [
-      "Start",
-      "Behavior",
-      "Listing",
-      "Environment",
-      "Tweak for dopamine",
-      "Who's around me",
-      "Downscale",
-      "Reward",
-      "Track",
-      "Repeat",
-      "End",
-      "Settings",
-      "Feedback",
-    ],
+    selected: categories[1],
+    categories,
   }),
   methods: {
-    nextStep(step) {
-      this.selected = step;
+    nextStep(next = true) {
+      if (next) this.selected = this.nextCategory;
+      if (!next) this.selected = this.previousCategory;
+    },
+  },
+  computed: {
+    nextCategory() {
+      let pos = 0;
+      for (let category of this.categories) {
+        pos++;
+        if (category.component === this.selected.component) break;
+      }
+      return this.categories[pos];
+    },
+    previousCategory() {
+      let pos = 0;
+      for (let category of this.categories) {
+        pos++;
+        if (category.component === this.selected.component) break;
+      }
+      return this.categories[pos - 2];
+    },
+    showNextButton() {
+      let show = true;
+      if (this.selected.component === "Reward") show = false;
+      return show;
+    },
+    showPreviousButton() {
+      let show = true;
+      if (this.selected.component === "Start") show = false;
+      return show;
     },
   },
 };

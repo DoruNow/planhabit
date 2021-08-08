@@ -11,6 +11,9 @@ export default new Vuex.Store({
     updateBehaviorList(state, payload) {
       state.behaviorList.push(payload);
     },
+    resetBehaviorList(state) {
+      state.behaviorList = [];
+    },
   },
   actions: {},
   modules: {},
