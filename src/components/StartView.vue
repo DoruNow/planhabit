@@ -81,7 +81,7 @@ export default {
   components: { Start, Behavior, Listing },
   data: () => ({
     drawer: null,
-    selected: categories[1],
+    selected: categories[2],
     categories,
   }),
   methods: {
