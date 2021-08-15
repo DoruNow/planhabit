@@ -42,7 +42,6 @@
                       <v-btn
                         elevation="4"
                         large
-                        rounded
                         color="success"
                         @click="nextStep(0)"
                         v-if="showPreviousButton"
@@ -52,7 +51,6 @@
                       <v-btn
                         elevation="4"
                         large
-                        rounded
                         color="success"
                         @click="nextStep()"
                         v-if="showNextButton"

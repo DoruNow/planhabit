@@ -23,53 +23,57 @@
             v-on:keyup.enter="saveHabit(nextHabit)"
             autocomplete="off"
           ></v-text-field>
+          <!-- refactor to component? 2buttons -->
           <v-row>
-            <v-col md="8" offset-md="2" class="d-flex justify-space-around">
+            <v-col class="d-flex justify-space-between">
               <v-btn
-                elevation="4"
                 large
-                rounded
-                color="secondary"
+                text
                 @click="$store.commit('resetBehaviorList')"
-                v-if="isBehaviorList"
+                v-if="showBehaviorList"
               >
                 Reset
               </v-btn>
-              <!-- <v-btn
-                elevation="4"
-                large
-                rounded
-                color="success"
+              <v-btn
+                class="white--text"
+                color="green darken-1"
+                depressed
                 @click="saveHabit(nextHabit)"
               >
-                Save
-              </v-btn> -->
+                Continue
+                <v-icon right> mdi-content-save </v-icon>
+              </v-btn>
             </v-col>
           </v-row>
         </v-card-text>
       </div>
     </v-col>
-    <BheaviorListComponent />
+    <ListComponent
+      :show="showBehaviorList"
+      :list="behaviorList"
+      :title="title"
+    />
   </v-row>
 </template>
 <script>
-import BheaviorListComponent from './BehaviorListComponent.vue'
+import ListComponent from "./ListComponent.vue";
 export default {
   components: {
-    BheaviorListComponent
+    ListComponent,
   },
   data() {
     return {
       nextHabit: { value: "" },
+      title: "Current habit list",
     };
   },
   methods: {
     saveHabit() {
       if (this.nextHabit.value === "") return;
       this.$store.commit("updateBehaviorList", {
-        id: this.behaviorList.length + 1,
-        postion: this.behaviorList.length,
-        label: `Habit no. ${this.behaviorList.length}`,
+        id: this.behaviorListLength,
+        position: this.behaviorListLength + 1,
+        label: `Habit no. ${this.behaviorListLength + 1}`,
         value: this.nextHabit.value,
       });
       this.nextHabit.value = "";
@@ -78,13 +82,16 @@ export default {
   computed: {
     label() {
       let label = `Habit no. ${this.behaviorList.length + 1}`;
-      if (!this.isBehaviorList) label = "Type in your habit then hit enter";
+      if (!this.showBehaviorList) label = "Type in your habit then hit enter";
       return label;
     },
     behaviorList() {
       return this.$store.state.behaviorList;
     },
-    isBehaviorList() {
+    behaviorListLength() {
+      return this.$store.state.behaviorList;
+    },
+    showBehaviorList() {
       return this.behaviorList.length ? true : false;
     },
   },
