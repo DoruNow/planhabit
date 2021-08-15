@@ -1,0 +1,166 @@
+[
+    {
+        "listName": "First List",
+        "behaviorList": [
+            {
+                "id": 0,
+                "position": 1,
+                "label": "Habit no. 1",
+                "value": "wake up"
+            },
+            {
+                "id": 1,
+                "position": 2,
+                "label": "Habit no. 2",
+                "value": "kiss miti"
+            },
+            {
+                "id": 2,
+                "position": 3,
+                "label": "Habit no. 3",
+                "value": "kiss Victor"
+            },
+            {
+                "id": 3,
+                "position": 4,
+                "label": "Habit no. 4",
+                "value": "kiss Victor1"
+            },
+            {
+                "id": 4,
+                "position": 5,
+                "label": "Habit no. 5",
+                "value": "kiss Victor2"
+            },
+            {
+                "id": 5,
+                "position": 6,
+                "label": "Habit no. 6",
+                "value": "kiss Victor3"
+            }
+        ]
+    },
+    {
+        "listName": "Second List",
+        "behaviorList": [
+            {
+                "id": 0,
+                "position": 1,
+                "label": "Habit no. 1",
+                "value": "Second wake up"
+            },
+            {
+                "id": 1,
+                "position": 2,
+                "label": "Habit no. 2",
+                "value": "kiss miti"
+            },
+            {
+                "id": 2,
+                "position": 3,
+                "label": "Habit no. 3",
+                "value": "kiss Victor"
+            },
+            {
+                "id": 3,
+                "position": 4,
+                "label": "Habit no. 4",
+                "value": "kiss Victor1"
+            },
+            {
+                "id": 4,
+                "position": 5,
+                "label": "Habit no. 5",
+                "value": "kiss Victor2"
+            },
+            {
+                "id": 5,
+                "position": 6,
+                "label": "Habit no. 6",
+                "value": "kiss Victor3"
+            }
+        ]
+    },
+    {
+        "listName": "Third List",
+        "behaviorList": [
+            {
+                "id": 0,
+                "position": 1,
+                "label": "Habit no. 1",
+                "value": "Third wake up"
+            },
+            {
+                "id": 1,
+                "position": 2,
+                "label": "Habit no. 2",
+                "value": "kiss miti"
+            },
+            {
+                "id": 2,
+                "position": 3,
+                "label": "Habit no. 3",
+                "value": "kiss Victor"
+            },
+            {
+                "id": 3,
+                "position": 4,
+                "label": "Habit no. 4",
+                "value": "kiss Victor1"
+            },
+            {
+                "id": 4,
+                "position": 5,
+                "label": "Habit no. 5",
+                "value": "kiss Victor2"
+            },
+            {
+                "id": 5,
+                "position": 6,
+                "label": "Habit no. 6",
+                "value": "kiss Victor3"
+            }
+        ]
+    },
+    {
+        "listName": "Fourth List",
+        "behaviorList": [
+            {
+                "id": 0,
+                "position": 1,
+                "label": "Habit no. 1",
+                "value": "Fourth wake up"
+            },
+            {
+                "id": 1,
+                "position": 2,
+                "label": "Habit no. 2",
+                "value": "kiss miti"
+            },
+            {
+                "id": 2,
+                "position": 3,
+                "label": "Habit no. 3",
+                "value": "kiss Victor"
+            },
+            {
+                "id": 3,
+                "position": 4,
+                "label": "Habit no. 4",
+                "value": "kiss Victor1"
+            },
+            {
+                "id": 4,
+                "position": 5,
+                "label": "Habit no. 5",
+                "value": "kiss Victor2"
+            },
+            {
+                "id": 5,
+                "position": 6,
+                "label": "Habit no. 6",
+                "value": "kiss Victor3"
+            }
+        ]
+    }
+]

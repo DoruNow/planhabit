@@ -17,6 +17,18 @@
           candidate.
         </v-card-text>
         <v-card-text class="d-flex flex-column">
+          <v-row>
+            <v-col :md="isBehaviorList ? 12 : 6">
+              <v-select
+                :items="behaviorNamesList"
+                label="Select an existing List"
+                solo
+                @change="selectBehaviorList"
+                class="pt-6 pr-6"
+                md="4"
+              ></v-select>
+            </v-col>
+          </v-row>
           <v-text-field
             :label="label"
             v-model="nextHabit.value"
@@ -30,7 +42,7 @@
                 large
                 text
                 @click="$store.commit('resetBehaviorList')"
-                v-if="showBehaviorList"
+                v-if="isBehaviorList"
               >
                 Reset
               </v-btn>
@@ -48,14 +60,13 @@
         </v-card-text>
       </div>
     </v-col>
-    <ListComponent
-      :show="showBehaviorList"
-      :list="behaviorList"
-      :title="title"
-    />
+    <v-col v-if="isBehaviorList">
+      <ListComponent :list="selectedBehaviorList.behaviorList" :title="title" />
+    </v-col>
   </v-row>
 </template>
 <script>
+import { mapGetters, mapState } from "vuex";
 import ListComponent from "./ListComponent.vue";
 export default {
   components: {
@@ -78,21 +89,28 @@ export default {
       });
       this.nextHabit.value = "";
     },
+    selectBehaviorList(a) {
+      console.log(this.a);
+      let b = this.allBehaviorLists.filter((list) => list.listName === a);
+      this.$store.commit({
+        type: "setBehaviorList",
+        payload: b[0].behaviorList,
+      });
+    },
   },
   computed: {
+    ...mapGetters([
+      "behaviorNamesList",
+      "behaviorListLength",
+      "isBehaviorList",
+    ]),
+    ...mapState(["allBehaviorLists", "selectedBehaviorList"]),
     label() {
-      let label = `Habit no. ${this.behaviorList.length + 1}`;
-      if (!this.showBehaviorList) label = "Type in your habit then hit enter";
+      let label;
+      this.isBehaviorList
+        ? (label = `Habit no. ${this.behaviorListLength + 1}`)
+        : (label = "Type in your habit then hit enter");
       return label;
-    },
-    behaviorList() {
-      return this.$store.state.behaviorList;
-    },
-    behaviorListLength() {
-      return this.$store.state.behaviorList;
-    },
-    showBehaviorList() {
-      return this.behaviorList.length ? true : false;
     },
   },
 };

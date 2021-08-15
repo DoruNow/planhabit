@@ -32,7 +32,10 @@
                   <v-card-title class="indigo white--text text-h4">
                     {{ selected.title }}
                   </v-card-title>
-                  <component :is="selected.component"></component>
+                  <component
+                    :is="selected.component"
+                    v-on:nextStep="step"
+                  ></component>
                   <v-row>
                     <v-col
                       md="4"
@@ -43,7 +46,7 @@
                         elevation="4"
                         large
                         color="success"
-                        @click="nextStep(0)"
+                        @click="step(0)"
                         v-if="showPreviousButton"
                       >
                         prev
@@ -52,7 +55,7 @@
                         elevation="4"
                         large
                         color="success"
-                        @click="nextStep()"
+                        @click="step()"
                         v-if="showNextButton"
                       >
                         next
@@ -73,17 +76,18 @@
 import Start from "./Start";
 import Behavior from "./Behavior";
 import Listing from "./Listing";
-import categories from "./Categories";
+import Environment from "./Environment";
+import categories from "../assets/Categories";
 
 export default {
-  components: { Start, Behavior, Listing },
+  components: { Start, Behavior, Listing, Environment },
   data: () => ({
     drawer: null,
-    selected: categories[2],
+    selected: categories[3],
     categories,
   }),
   methods: {
-    nextStep(next = true) {
+    step(next = true) {
       if (next) this.selected = this.nextCategory;
       if (!next) this.selected = this.previousCategory;
     },

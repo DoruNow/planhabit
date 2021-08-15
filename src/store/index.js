@@ -1,30 +1,39 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import mockData from "../assets/mockData.json"
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    behaviorList: [
-      { id: 0, position: 1, label: "Habit no. 1", value: "wake up" },
-      { id: 1, position: 2, label: "Habit no. 2", value: "kiss miti" },
-      { id: 2, position: 3, label: "Habit no. 3", value: "kiss Victor" },
-      { id: 3, position: 4, label: "Habit no. 4", value: "kiss Victor1" },
-      { id: 4, position: 5, label: "Habit no. 5", value: "kiss Victor2" },
-      { id: 5, position: 6, label: "Habit no. 6", value: "kiss Victor3" },
-    ],
+    allBehaviorLists: mockData,
+    selectedBehaviorList: mockData[0],
     chainedBehaviorList: [],
-    editedChainedBehaviorList: [],
+    editedChainedBehaviorLists: [],
+  },
+  getters: {
+    behaviorNamesList: state => {
+      return state.allBehaviorLists.map(list => list.listName)
+    },
+    editedChainedBehaviorNamesList: state => {
+      return state.editedChainedBehaviorLists.map(list => list.listName)
+    },
+    behaviorListLength: state => {
+      return state.selectedBehaviorList.behaviorList.length;
+    },
+    isBehaviorList: state => {
+      return state.selectedBehaviorList.behaviorList.length ? true : false;
+    }
   },
   mutations: {
     updateBehaviorList(state, payload) {
-      state.behaviorList.push(payload);
+      state.selectedBehaviorList.behaviorList.push(payload);
     },
     resetBehaviorList(state) {
-      state.behaviorList = [];
+      state.selectedBehaviorList.behaviorList = [];
     },
-    replaceBehaviorList(state, payload) {
-      state.behaviorList = payload.payload;
+    setBehaviorList(state, payload) {
+      state.selectedBehaviorList.behaviorList = payload.payload;
     },
     setChainedBehaviorList(state, payload) {
       state.chainedBehaviorList = payload.payload;
@@ -32,12 +41,12 @@ export default new Vuex.Store({
   },
   actions: {
     doChainHabits(context) {
-      let l = context.state.behaviorList.length;
+      let l = context.state.selectedBehaviorList.behaviorList.length;
       const result = [];
       for (let i = 0; i < l; i++) {
         result.push([
-          context.state.behaviorList[i],
-          context.state.behaviorList[i + 1],
+          context.state.selectedBehaviorList.behaviorList[i],
+          context.state.selectedBehaviorList.behaviorList[i + 1],
         ]);
       }
       result.pop();

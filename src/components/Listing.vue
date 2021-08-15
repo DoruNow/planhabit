@@ -35,14 +35,26 @@
     </v-col>
     <v-col v-if="start" class="pa-6">
       <v-row class="pa-6">
-        <v-col> <h3>Name: TODO</h3> </v-col>
-        <v-col> <h3>Select Existing Chained Habit List: TODO</h3> </v-col>
+        <v-col md="6">
+          <v-text-field
+            outlined
+            :clear-icon="focused ? 'mdi-close-circle' : ''"
+            clearable
+            @focus="focused = true"
+            @blur="focused = false"
+            class="text-h5"
+            label="List Name:"
+            :value="selectedBehaviorList.listName"
+            :v-model="selectedBehaviorList.listName"
+            v-on:keyup.enter="focused = false"
+          ></v-text-field>
+        </v-col>
       </v-row>
       <v-row>
         <v-col>
           <v-list>
             <v-list-item
-              v-for="(chainedHabit, index) in chainedHabits"
+              v-for="(chainedHabit, index) in chainedBehaviorList"
               :key="index"
             >
               <v-row>
@@ -75,13 +87,9 @@
 
       <v-row v-if="start" mt="6">
         <v-col class="d-flex justify-center flex-row">
-          <v-btn
-            elevation="4"
-            large
-            color="success"
-            @click="chainCompleted = true"
-          >
+          <v-btn elevation="4" large color="success" @click="$emit('nextStep')">
             I'm happy with it
+            <v-icon right> mdi-content-save </v-icon>
           </v-btn>
         </v-col>
       </v-row>
@@ -90,19 +98,20 @@
 </template>
 
 <script>
+import { mapState } from "vuex";
 export default {
   data() {
     return {
       start: true,
-      chainCompleted: false,
       afterI: "After I",
       iWill: "I will",
+      focused: false,
     };
   },
   methods: {
     addRow(index) {
       const result = [],
-        sp = this.$store.state.behaviorList;
+        sp = this.$store.state.selectedBehaviorList.behaviorList;
       sp.splice(index + 1, 0, {
         value: "",
       });
@@ -115,15 +124,17 @@ export default {
         });
       });
       this.$store.commit({
-        type: "replaceBehaviorList",
+        type: "setBehaviorList",
         payload: result,
       });
       this.$store.dispatch("doChainHabits");
     },
   },
   computed: {
-    chainedHabits() {
-      return this.$store.state.chainedBehaviorList;
+    ...mapState(["selectedBehaviorList", "chainedBehaviorList"]),
+    showSaveIcon() {
+      if (this.focused) return "mdi-content-save";
+      return "";
     },
   },
   mounted() {
