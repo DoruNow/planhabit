@@ -1,29 +1,32 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import mockData from "../assets/mockData.json"
+import mockData from "../assets/mockData.json";
+import Config from "../assets/Config.js";
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
     allBehaviorLists: mockData,
-    selectedBehaviorList: mockData[0],
     chainedBehaviorList: [],
     editedChainedBehaviorLists: [],
+    menuItems: [],
+    selectedBehaviorList: mockData[0],
+    selectedStep: null,
   },
   getters: {
-    behaviorNamesList: state => {
-      return state.allBehaviorLists.map(list => list.listName)
+    behaviorNamesList: (state) => {
+      return state.allBehaviorLists.map((list) => list.listName);
     },
-    editedChainedBehaviorNamesList: state => {
-      return state.editedChainedBehaviorLists.map(list => list.listName)
+    editedChainedBehaviorNamesList: (state) => {
+      return state.editedChainedBehaviorLists.map((list) => list.listName);
     },
-    behaviorListLength: state => {
+    behaviorListLength: (state) => {
       return state.selectedBehaviorList.behaviorList.length;
     },
-    isBehaviorList: state => {
+    isBehaviorList: (state) => {
       return state.selectedBehaviorList.behaviorList.length ? true : false;
-    }
+    },
   },
   mutations: {
     updateBehaviorList(state, payload) {
@@ -37,6 +40,14 @@ export default new Vuex.Store({
     },
     setChainedBehaviorList(state, payload) {
       state.chainedBehaviorList = payload.payload;
+    },
+    setSelectedStep(state, payload) {
+      state.selectedStep = payload.payload;
+    },
+    setMenuItems(state) {
+      const result = [];
+      Config.map((item) => result.push(item.menuItem));
+      state.menuItems = result;
     },
   },
   actions: {

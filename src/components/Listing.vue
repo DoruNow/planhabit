@@ -87,7 +87,12 @@
 
       <v-row v-if="start" mt="6">
         <v-col class="d-flex justify-center flex-row">
-          <v-btn elevation="4" large color="success" @click="$emit('nextStep')">
+          <v-btn
+            elevation="4"
+            large
+            color="success"
+            @click="$emit('selectStep', 2)"
+          >
             I'm happy with it
             <v-icon right> mdi-content-save </v-icon>
           </v-btn>

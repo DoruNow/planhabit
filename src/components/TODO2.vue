@@ -1,5 +1,5 @@
 <template>
-  <div>Coming soon</div>
+  <div>TODO</div>
 </template>
 
 <script>

@@ -1,7 +1,7 @@
 module.exports = [
-  {},
+  { name: "start", component: "Start", title: "Please read this bit" },
   {
-    name: "Behavior",
+    name: "behavior",
     component: "Behavior",
     title: "Where are we at right now?",
   },
