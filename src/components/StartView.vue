@@ -83,7 +83,7 @@ export default {
   components: { Start, Behavior, Listing, Environment },
   data: () => ({
     drawer: null,
-    selected: categories[3],
+    selected: categories[1],
     categories,
   }),
   methods: {
