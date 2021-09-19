@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex";
+import { mapActions, mapState } from "vuex"
 
 export default {
   components: { TabComponent: () => import("./TabComponent.vue") },
@@ -45,9 +45,9 @@ export default {
   }),
   methods: {
     step(next = true) {
-      if (next) this.selected++;
-      if (!next) this.selected--;
-      this.updateSelectedStep(this.selected);
+      if (next) this.selected++
+      if (!next) this.selected--
+      this.updateSelectedStep(this.selected)
     },
     ...mapActions(["updateSelectedStep", "createMenuItems"]),
   },
@@ -55,10 +55,10 @@ export default {
     ...mapState(["menuItems", "selectedStep"]),
   },
   mounted() {
-    this.createMenuItems();
-    this.updateSelectedStep(this.selected);
+    this.createMenuItems()
+    this.updateSelectedStep(this.selected)
   },
-};
+}
 </script>
 
 <style lang="sass" scoped>

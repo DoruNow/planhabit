@@ -119,25 +119,25 @@
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex";
+import { mapActions, mapState } from "vuex"
 export default {
   data() {
     return {
       newList: {
         listName: "",
       },
-    };
+    }
   },
   methods: {
     addRow(index) {
-      this.updateSelectedBehaviorList({ newList: this.newlist, index });
+      this.updateSelectedBehaviorList({ newList: this.newlist, index })
     },
     ...mapActions(["updateSelectedBehaviorList"]),
   },
   computed: {
     ...mapState(["selectedBehaviorList", "uniqueHabitBuildingBlocks"]),
   },
-};
+}
 </script>
 
 <style lang="scss" scoped></style>

@@ -27,16 +27,16 @@
 </template>
 
 <script>
-import BehaviorListComponent from "./BehaviorListComponent.vue";
-import ExplanationComponent from "./ExplanationComponent.vue";
-import CreateNewConnections from "./CreateNewConnections.vue";
+import BehaviorListComponent from "./BehaviorListComponent.vue"
+import ExplanationComponent from "./ExplanationComponent.vue"
+import CreateNewConnections from "./CreateNewConnections.vue"
 
-import TODO from "./TODO.vue";
-import TODO1 from "./TODO1.vue";
-import TODO2 from "./TODO2.vue";
+import TODO from "./TODO.vue"
+import TODO1 from "./TODO1.vue"
+import TODO2 from "./TODO2.vue"
 
-import { mapState } from "vuex";
-import Config from "../assets/Config";
+import { mapState } from "vuex"
+import Config from "../assets/Config"
 
 export default {
   components: {
@@ -50,15 +50,15 @@ export default {
   data() {
     return {
       tab: null,
-    };
+    }
   },
   computed: {
     ...mapState(["selectedStep"]),
     config() {
-      return Config[this.selectedStep];
+      return Config[this.selectedStep]
     },
   },
-};
+}
 </script>
 
 <style lang="scss" scoped></style>

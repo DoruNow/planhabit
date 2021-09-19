@@ -56,4 +56,4 @@ module.exports = [
     component: "Feedback",
     title: "Where are we at right now?",
   },
-];
+]

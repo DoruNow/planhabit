@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import StartView from "./components/StartView";
+import StartView from "./components/StartView"
 
 export default {
   name: "App",
@@ -19,5 +19,5 @@ export default {
   data: () => ({
     //
   }),
-};
+}
 </script>
