@@ -26,10 +26,10 @@
       <v-container class="py-8 px-6">
         <v-row>
           <v-col cols="12">
-            <component
-              :is="listOfComponents[$store.state.selectedStep]"
+            <TabComponent
+              :config="Config[$store.state.selectedStep]"
               v-on:selectStep="selected = $event"
-            ></component>
+            />
           </v-col>
         </v-row>
       </v-container>
@@ -38,16 +38,13 @@
 </template>
 
 <script>
-import Start from "./Start";
-import Behavior from "./Behavior";
-// import Listing from "./Listing";
-// import Environment from "./Environment";
-// import Config from "../assets/Config";
 import { mapState } from "vuex";
+import Config from "../assets/Config";
 
 export default {
-  components: { Start, Behavior },
+  components: { TabComponent: () => import("./TabComponent.vue") },
   data: () => ({
+    Config,
     drawer: null,
     selected: 1,
   }),
@@ -65,9 +62,6 @@ export default {
     },
   },
   computed: {
-    listOfComponents() {
-      return ["Start", "Behavior"];
-    },
     ...mapState(["menuItems", "selectedStep"]),
   },
   mounted() {

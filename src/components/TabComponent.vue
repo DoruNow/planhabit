@@ -13,14 +13,14 @@
       color="white"
       slider-color="white"
     >
-      <v-tab v-for="tab in config.tabs" :key="tab">
-        {{ tab }}
+      <v-tab v-for="tab in config.tabs" :key="tab.name">
+        {{ tab.name }}
       </v-tab>
     </v-tabs>
 
     <v-tabs-items v-model="tab">
-      <v-tab-item v-for="component in tabComponents" :key="component">
-        <component :is="component"></component>
+      <v-tab-item v-for="component in config.tabs" :key="component.name">
+        <component :is="component.component"></component>
       </v-tab-item>
     </v-tabs-items>
   </v-card>
@@ -29,6 +29,7 @@
 <script>
 import BehaviorListComponent from "./BehaviorListComponent.vue";
 import ExplanationComponent from "./ExplanationComponent.vue";
+import Listing from "./Listing.vue";
 
 import TODO from "./TODO.vue";
 import TODO1 from "./TODO1.vue";
@@ -37,11 +38,11 @@ import TODO2 from "./TODO2.vue";
 export default {
   props: {
     config: Object,
-    tabComponents: Array,
   },
   components: {
     BehaviorListComponent,
     ExplanationComponent,
+    Listing,
     TODO,
     TODO1,
     TODO2,

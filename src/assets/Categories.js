@@ -1,11 +1,15 @@
 module.exports = [
-  { name: "start", component: "Start", title: "Please read this bit" },
+  { name: "start", component: "PHStart", title: "Please read this bit" },
   {
     name: "behavior",
-    component: "Behavior",
+    component: "PHBehavior",
     title: "Where are we at right now?",
   },
-  { name: "Listing", component: "Listing", title: "What do I want?" },
+  {
+    name: "new-connections",
+    component: "PHNewConnections",
+    title: "What do I want?",
+  },
   {
     name: "Environment",
     component: "Environment",
