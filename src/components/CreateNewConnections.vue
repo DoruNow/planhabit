@@ -1,6 +1,6 @@
 <template>
   <v-row>
-    <v-col v-if="!start">
+    <!-- <v-col v-if="!start">
       <div>
         <v-card-text class="text-subtitle-1">
           What we achieved so far is to write down a chain of habits. A very
@@ -32,8 +32,8 @@
           Start
         </v-btn>
       </v-col>
-    </v-col>
-    <v-col v-if="start" class="pa-6">
+    </v-col> -->
+    <v-col class="pa-6">
       <v-row class="pa-6">
         <v-col md="6">
           <v-text-field
@@ -85,13 +85,13 @@
         </v-col>
       </v-row>
 
-      <v-row v-if="start" mt="6">
+      <v-row mt="6">
         <v-col class="d-flex justify-center flex-row">
           <v-btn
             elevation="4"
             large
             color="success"
-            @click="$emit('selectStep', 2)"
+            @click="updateSelectedStep(1)"
           >
             I'm happy with it
             <v-icon right> mdi-content-save </v-icon>
@@ -107,7 +107,6 @@ import { mapState } from "vuex";
 export default {
   data() {
     return {
-      start: true,
       afterI: "After I",
       iWill: "I will",
       focused: false,

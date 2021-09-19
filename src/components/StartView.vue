@@ -6,10 +6,10 @@
 
       <v-list>
         <v-list-item
-          v-for="menuItem in menuItems"
+          v-for="(menuItem, index) in menuItems"
           :key="menuItem"
           link
-          @click="selectMenuItem(menuItem)"
+          @click="updateSelectedStep(index)"
         >
           <v-list-item-icon>
             <v-icon></v-icon>
@@ -26,10 +26,7 @@
       <v-container class="py-8 px-6">
         <v-row>
           <v-col cols="12">
-            <TabComponent
-              :config="Config[$store.state.selectedStep]"
-              v-on:selectStep="selected = $event"
-            />
+            <TabComponent :config="Config[selectedStep]" />
           </v-col>
         </v-row>
       </v-container>
@@ -38,7 +35,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapActions, mapState } from "vuex";
 import Config from "../assets/Config";
 
 export default {
@@ -46,27 +43,22 @@ export default {
   data: () => ({
     Config,
     drawer: null,
-    selected: 1,
+    selected: 2,
   }),
   methods: {
     step(next = true) {
       if (next) this.selected++;
       if (!next) this.selected--;
-      this.$store.commit("setSelectedStep", this.selected);
+      this.updateSelectedStep(this.selected);
     },
-    selectMenuItem(menuItem) {
-      let index = this.menuItems.findIndex((item) => item === menuItem);
-      this.$store.commit("setSelectedStep", {
-        payload: index,
-      });
-    },
+    ...mapActions(["updateSelectedStep", "createMenuItems"]),
   },
   computed: {
     ...mapState(["menuItems", "selectedStep"]),
   },
   mounted() {
-    this.$store.commit("setSelectedStep", { payload: this.selected });
-    this.$store.commit("setMenuItems");
+    this.updateSelectedStep(this.selected);
+    this.createMenuItems();
   },
 };
 </script>

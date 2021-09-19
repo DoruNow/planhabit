@@ -42,15 +42,21 @@ export default new Vuex.Store({
       state.chainedBehaviorList = payload.payload;
     },
     setSelectedStep(state, payload) {
-      state.selectedStep = payload.payload;
+      state.selectedStep = payload;
     },
-    setMenuItems(state) {
-      const result = [];
-      Config.map((item) => result.push(item.menuItem));
-      state.menuItems = result;
+    setMenuItems(state, payload) {
+      state.menuItems = payload;
     },
   },
   actions: {
+    updateSelectedStep(context, payload) {
+      context.commit("setSelectedStep", payload);
+    },
+    createMenuItems(context) {
+      const result = [];
+      Config.map((item) => result.push(item.menuItem));
+      context.commit("setMenuItems", result);
+    },
     doChainHabits(context) {
       let l = context.state.selectedBehaviorList.behaviorList.length;
       const result = [];

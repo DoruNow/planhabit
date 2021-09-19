@@ -23,18 +23,22 @@ module.exports = [
     ],
     tabs: [
       {
+        id: 0,
+        name: "Intro",
+        component: "TODO",
+      },
+      {
+        id: 1,
         name: "Explanation",
         component: "ExplanationComponent",
       },
       {
-        name: "Intr0",
-        component: "TODO",
-      },
-      {
+        id: 2,
         name: "Demo",
         component: "TODO",
       },
       {
+        id: 3,
         name: "About",
         component: "TODO2",
       },
@@ -60,18 +64,22 @@ module.exports = [
     ],
     tabs: [
       {
-        name: "Explanation",
-        component: "ExplanationComponent",
-      },
-      {
+        id: 0,
         name: "List",
         component: "BehaviorListComponent",
       },
       {
+        id: 1,
+        name: "Explanation",
+        component: "ExplanationComponent",
+      },
+      {
+        id: 2,
         name: "Examples",
         component: "TODO",
       },
       {
+        id: 3,
         name: "Fan Favorites",
         component: "TODO1",
       },
@@ -97,18 +105,22 @@ module.exports = [
     ],
     tabs: [
       {
+        id: 0,
+        name: "Create New Connections",
+        component: "CreateNewConnections",
+      },
+      {
+        id: 1,
         name: "Explanation",
         component: "ExplanationComponent",
       },
       {
-        name: "Listing",
-        component: "Listing",
-      },
-      {
+        id: 2,
         name: "Examples",
         component: "TODO",
       },
       {
+        id: 3,
         name: "Fan Favorites",
         component: "TODO1",
       },
