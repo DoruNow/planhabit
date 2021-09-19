@@ -7,5 +7,7 @@ module.exports = {
   parserOptions: {
     parser: "babel-eslint",
   },
-  rules: {},
+  rules: {
+    // semi: [1, "never"],
+  },
 };

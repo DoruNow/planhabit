@@ -1,166 +1,167 @@
-[
-    {
-        "listName": "First List",
-        "behaviorList": [
-            {
-                "id": 0,
-                "position": 1,
-                "label": "Habit no. 1",
-                "value": "wake up"
-            },
-            {
-                "id": 1,
-                "position": 2,
-                "label": "Habit no. 2",
-                "value": "kiss miti"
-            },
-            {
-                "id": 2,
-                "position": 3,
-                "label": "Habit no. 3",
-                "value": "kiss Victor"
-            },
-            {
-                "id": 3,
-                "position": 4,
-                "label": "Habit no. 4",
-                "value": "kiss Victor1"
-            },
-            {
-                "id": 4,
-                "position": 5,
-                "label": "Habit no. 5",
-                "value": "kiss Victor2"
-            },
-            {
-                "id": 5,
-                "position": 6,
-                "label": "Habit no. 6",
-                "value": "kiss Victor3"
-            }
-        ]
-    },
-    {
-        "listName": "Second List",
-        "behaviorList": [
-            {
-                "id": 0,
-                "position": 1,
-                "label": "Habit no. 1",
-                "value": "Second wake up"
-            },
-            {
-                "id": 1,
-                "position": 2,
-                "label": "Habit no. 2",
-                "value": "kiss miti"
-            },
-            {
-                "id": 2,
-                "position": 3,
-                "label": "Habit no. 3",
-                "value": "kiss Victor"
-            },
-            {
-                "id": 3,
-                "position": 4,
-                "label": "Habit no. 4",
-                "value": "kiss Victor1"
-            },
-            {
-                "id": 4,
-                "position": 5,
-                "label": "Habit no. 5",
-                "value": "kiss Victor2"
-            },
-            {
-                "id": 5,
-                "position": 6,
-                "label": "Habit no. 6",
-                "value": "kiss Victor3"
-            }
-        ]
-    },
-    {
-        "listName": "Third List",
-        "behaviorList": [
-            {
-                "id": 0,
-                "position": 1,
-                "label": "Habit no. 1",
-                "value": "Third wake up"
-            },
-            {
-                "id": 1,
-                "position": 2,
-                "label": "Habit no. 2",
-                "value": "kiss miti"
-            },
-            {
-                "id": 2,
-                "position": 3,
-                "label": "Habit no. 3",
-                "value": "kiss Victor"
-            },
-            {
-                "id": 3,
-                "position": 4,
-                "label": "Habit no. 4",
-                "value": "kiss Victor1"
-            },
-            {
-                "id": 4,
-                "position": 5,
-                "label": "Habit no. 5",
-                "value": "kiss Victor2"
-            },
-            {
-                "id": 5,
-                "position": 6,
-                "label": "Habit no. 6",
-                "value": "kiss Victor3"
-            }
-        ]
-    },
-    {
-        "listName": "Fourth List",
-        "behaviorList": [
-            {
-                "id": 0,
-                "position": 1,
-                "label": "Habit no. 1",
-                "value": "Fourth wake up"
-            },
-            {
-                "id": 1,
-                "position": 2,
-                "label": "Habit no. 2",
-                "value": "kiss miti"
-            },
-            {
-                "id": 2,
-                "position": 3,
-                "label": "Habit no. 3",
-                "value": "kiss Victor"
-            },
-            {
-                "id": 3,
-                "position": 4,
-                "label": "Habit no. 4",
-                "value": "kiss Victor1"
-            },
-            {
-                "id": 4,
-                "position": 5,
-                "label": "Habit no. 5",
-                "value": "kiss Victor2"
-            },
-            {
-                "id": 5,
-                "position": 6,
-                "label": "Habit no. 6",
-                "value": "kiss Victor3"
-            }
+{
+    "behaviorLists": [
+        {
+            "id": 0,
+            "listName": "First Lists",
+            "behaviorList": [
+                {
+                    "prefixIndex": 2,
+                    "firstEventIndex": 1,
+                    "connectionIndex": 0,
+                    "secondEventIndex": 1
+                },
+                {
+                    "prefixIndex": 2,
+                    "firstEventIndex": 1,
+                    "connectionIndex": 0,
+                    "secondEventIndex": 1
+                },
+                {
+                    "prefixIndex": 2,
+                    "firstEventIndex": 1,
+                    "connectionIndex": 0,
+                    "secondEventIndex": 1
+                },
+                {
+                    "prefixIndex": 2,
+                    "firstEventIndex": 1,
+                    "connectionIndex": 0,
+                    "secondEventIndex": 1
+                },
+                {
+                    "prefixIndex": 2,
+                    "firstEventIndex": 1,
+                    "connectionIndex": 0,
+                    "secondEventIndex": 1
+                }
+            ]
+        },
+        {
+            "id": 1,
+            "listName": "second List",
+            "behaviorList": [
+                {
+                    "prefixIndex": 2,
+                    "firstEventIndex": 1,
+                    "connectionIndex": 0,
+                    "secondEventIndex": 1
+                },
+                {
+                    "prefixIndex": 2,
+                    "firstEventIndex": 1,
+                    "connectionIndex": 0,
+                    "secondEventIndex": 1
+                },
+                {
+                    "prefixIndex": 2,
+                    "firstEventIndex": 1,
+                    "connectionIndex": 0,
+                    "secondEventIndex": 1
+                },
+                {
+                    "prefixIndex": 2,
+                    "firstEventIndex": 1,
+                    "connectionIndex": 0,
+                    "secondEventIndex": 1
+                },
+                {
+                    "prefixIndex": 2,
+                    "firstEventIndex": 1,
+                    "connectionIndex": 0,
+                    "secondEventIndex": 1
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "listName": "third List",
+            "behaviorList": [
+                {
+                    "prefixIndex": 2,
+                    "firstEventIndex": 1,
+                    "connectionIndex": 0,
+                    "secondEventIndex": 1
+                },
+                {
+                    "prefixIndex": 2,
+                    "firstEventIndex": 1,
+                    "connectionIndex": 0,
+                    "secondEventIndex": 1
+                },
+                {
+                    "prefixIndex": 2,
+                    "firstEventIndex": 1,
+                    "connectionIndex": 0,
+                    "secondEventIndex": 1
+                },
+                {
+                    "prefixIndex": 2,
+                    "firstEventIndex": 1,
+                    "connectionIndex": 0,
+                    "secondEventIndex": 1
+                },
+                {
+                    "prefixIndex": 2,
+                    "firstEventIndex": 1,
+                    "connectionIndex": 0,
+                    "secondEventIndex": 1
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "listName": "fourth List",
+            "behaviorList": [
+                {
+                    "prefixIndex": 2,
+                    "firstEventIndex": 1,
+                    "connectionIndex": 0,
+                    "secondEventIndex": 1
+                },
+                {
+                    "prefixIndex": 2,
+                    "firstEventIndex": 1,
+                    "connectionIndex": 0,
+                    "secondEventIndex": 1
+                },
+                {
+                    "prefixIndex": 2,
+                    "firstEventIndex": 1,
+                    "connectionIndex": 0,
+                    "secondEventIndex": 1
+                },
+                {
+                    "prefixIndex": 2,
+                    "firstEventIndex": 1,
+                    "connectionIndex": 0,
+                    "secondEventIndex": 1
+                },
+                {
+                    "prefixIndex": 2,
+                    "firstEventIndex": 1,
+                    "connectionIndex": 0,
+                    "secondEventIndex": 1
+                }
+            ]
+        }
+    ],
+    "uniqueHabitBuildingBlocks": {
+        "prefixes": [
+            "If I",
+            "When I",
+            "While I"
+        ],
+        "firstEvents": [
+            "start working",
+            "look at the sky"
+        ],
+        "connections": [
+            "I will",
+            "then I will"
+        ],
+        "secondEvents": [
+            "clean room",
+            "count clouds"
         ]
     }
-]
+}

@@ -8,18 +8,14 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     allBehaviorLists: mockData,
-    chainedBehaviorList: [],
-    editedChainedBehaviorLists: [],
     menuItems: [],
-    selectedBehaviorList: mockData[0],
+    selectedBehaviorList: mockData.behaviorLists[0],
     selectedStep: null,
+    uniqueHabitBuildingBlocks: mockData.uniqueHabitBuildingBlocks,
   },
   getters: {
     behaviorNamesList: (state) => {
       return state.allBehaviorLists.map((list) => list.listName);
-    },
-    editedChainedBehaviorNamesList: (state) => {
-      return state.editedChainedBehaviorLists.map((list) => list.listName);
     },
     behaviorListLength: (state) => {
       return state.selectedBehaviorList.behaviorList.length;
@@ -36,10 +32,7 @@ export default new Vuex.Store({
       state.selectedBehaviorList.behaviorList = [];
     },
     setBehaviorList(state, payload) {
-      state.selectedBehaviorList.behaviorList = payload.payload;
-    },
-    setChainedBehaviorList(state, payload) {
-      state.chainedBehaviorList = payload.payload;
+      state.selectedBehaviorList.behaviorList = payload;
     },
     setSelectedStep(state, payload) {
       state.selectedStep = payload;
@@ -47,30 +40,30 @@ export default new Vuex.Store({
     setMenuItems(state, payload) {
       state.menuItems = payload;
     },
+    setUniqueHabitBuildingBlocks(state, payload) {
+      state.uniqueHabitBuildingBlocks = payload;
+    },
   },
   actions: {
     updateSelectedStep(context, payload) {
       context.commit("setSelectedStep", payload);
     },
+    updateSelectedBehaviorList(context, { newList, index }) {
+      newList.splice(index, 0, {
+        prefix: "If I",
+        firstEvent: "look at the sky",
+        connection: "then I will",
+        secondEvent: "count clouds",
+      });
+      newList.forEach((row, index) => {
+        row.label = `Rule no. ${index}`;
+      });
+      context.commit("setBehaviorList", { newList });
+    },
     createMenuItems(context) {
       const result = [];
       Config.map((item) => result.push(item.menuItem));
       context.commit("setMenuItems", result);
-    },
-    doChainHabits(context) {
-      let l = context.state.selectedBehaviorList.behaviorList.length;
-      const result = [];
-      for (let i = 0; i < l; i++) {
-        result.push([
-          context.state.selectedBehaviorList.behaviorList[i],
-          context.state.selectedBehaviorList.behaviorList[i + 1],
-        ]);
-      }
-      result.pop();
-      context.commit({
-        type: "setChainedBehaviorList",
-        payload: result,
-      });
     },
   },
   modules: {},

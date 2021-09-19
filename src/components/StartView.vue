@@ -26,7 +26,7 @@
       <v-container class="py-8 px-6">
         <v-row>
           <v-col cols="12">
-            <TabComponent :config="Config[selectedStep]" />
+            <TabComponent />
           </v-col>
         </v-row>
       </v-container>
@@ -36,12 +36,10 @@
 
 <script>
 import { mapActions, mapState } from "vuex";
-import Config from "../assets/Config";
 
 export default {
   components: { TabComponent: () => import("./TabComponent.vue") },
   data: () => ({
-    Config,
     drawer: null,
     selected: 2,
   }),
@@ -57,8 +55,8 @@ export default {
     ...mapState(["menuItems", "selectedStep"]),
   },
   mounted() {
-    this.updateSelectedStep(this.selected);
     this.createMenuItems();
+    this.updateSelectedStep(this.selected);
   },
 };
 </script>

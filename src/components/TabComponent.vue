@@ -35,10 +35,10 @@ import TODO from "./TODO.vue";
 import TODO1 from "./TODO1.vue";
 import TODO2 from "./TODO2.vue";
 
+import { mapState } from "vuex";
+import Config from "../assets/Config";
+
 export default {
-  props: {
-    config: Object,
-  },
   components: {
     BehaviorListComponent,
     ExplanationComponent,
@@ -51,6 +51,12 @@ export default {
     return {
       tab: null,
     };
+  },
+  computed: {
+    ...mapState(["selectedStep"]),
+    config() {
+      return Config[this.selectedStep];
+    },
   },
 };
 </script>

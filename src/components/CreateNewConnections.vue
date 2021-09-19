@@ -38,46 +38,62 @@
         <v-col md="6">
           <v-text-field
             outlined
-            :clear-icon="focused ? 'mdi-close-circle' : ''"
-            clearable
-            @focus="focused = true"
-            @blur="focused = false"
             class="text-h5"
             label="List Name:"
             :value="selectedBehaviorList.listName"
-            :v-model="selectedBehaviorList.listName"
-            v-on:keyup.enter="focused = false"
+            :v-model="newList.listName"
           ></v-text-field>
         </v-col>
       </v-row>
       <v-row>
+        <v-col class="d-flex flex-row">
+          <v-select
+            :items="uniqueHabitBuildingBlocks.prefixes"
+            label="Solo field"
+            solo
+          ></v-select>
+          <v-select
+            :items="uniqueHabitBuildingBlocks.firstEvents"
+            label="Solo field"
+            solo
+          ></v-select>
+          <v-select
+            :items="uniqueHabitBuildingBlocks.connections"
+            label="Solo field"
+            solo
+          ></v-select>
+          <v-select
+            :items="uniqueHabitBuildingBlocks.secondEvents"
+            label="Solo field"
+            solo
+          ></v-select>
+        </v-col>
         <v-col>
           <v-list>
             <v-list-item
-              v-for="(chainedHabit, index) in chainedBehaviorList"
+              v-for="(habitBlock, index) in selectedBehaviorList.behaviorList"
               :key="index"
             >
               <v-row>
-                <v-col class="d-flex flex-row">
-                  <v-text-field v-model="afterI" :value="afterI"
-                    >After I</v-text-field
-                  >
-                  <v-text-field
-                    v-model="chainedHabit[0].value"
-                    :value="chainedHabit[0].value"
-                    type="text"
-                    @click:append-outer="addRow"
-                  ></v-text-field>
-                  <v-text-field v-model="iWill" :value="iWill"
-                    >, I will</v-text-field
-                  >
-                  <v-text-field
-                    v-model="chainedHabit[1].value"
-                    append-outer-icon="mdi-subdirectory-arrow-left"
-                    :value="chainedHabit[1]"
-                    type="text"
-                    @click:append-outer="addRow(index)"
-                  ></v-text-field>
+                <v-col>
+                  {{
+                    uniqueHabitBuildingBlocks.prefixes[habitBlock.prefixIndex]
+                  }}
+                  {{
+                    uniqueHabitBuildingBlocks.firstEvents[
+                      habitBlock.firstEventIndex
+                    ]
+                  }}
+                  {{
+                    uniqueHabitBuildingBlocks.connections[
+                      habitBlock.connectionIndex
+                    ]
+                  }}
+                  {{
+                    uniqueHabitBuildingBlocks.secondEvents[
+                      habitBlock.secondEventIndex
+                    ]
+                  }}
                 </v-col>
               </v-row>
             </v-list-item>
@@ -103,46 +119,23 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapActions, mapState } from "vuex";
 export default {
   data() {
     return {
-      afterI: "After I",
-      iWill: "I will",
-      focused: false,
+      newList: {
+        listName: "",
+      },
     };
   },
   methods: {
     addRow(index) {
-      const result = [],
-        sp = this.$store.state.selectedBehaviorList.behaviorList;
-      sp.splice(index + 1, 0, {
-        value: "",
-      });
-      sp.forEach((habit, index) => {
-        result.push({
-          id: index,
-          position: index + 1,
-          label: `Habit no. ${index + 1}`,
-          value: habit.value,
-        });
-      });
-      this.$store.commit({
-        type: "setBehaviorList",
-        payload: result,
-      });
-      this.$store.dispatch("doChainHabits");
+      this.updateSelectedBehaviorList({ newList: this.newlist, index });
     },
+    ...mapActions(["updateSelectedBehaviorList"]),
   },
   computed: {
-    ...mapState(["selectedBehaviorList", "chainedBehaviorList"]),
-    showSaveIcon() {
-      if (this.focused) return "mdi-content-save";
-      return "";
-    },
-  },
-  mounted() {
-    this.$store.dispatch("doChainHabits");
+    ...mapState(["selectedBehaviorList", "uniqueHabitBuildingBlocks"]),
   },
 };
 </script>
