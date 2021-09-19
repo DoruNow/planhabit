@@ -35,28 +35,28 @@
 </template>
 
 <script>
-import { mapActions, mapState } from "vuex"
+import { mapActions, mapState } from 'vuex'
 
 export default {
-  components: { TabComponent: () => import("./TabComponent.vue") },
+  components: { TabComponent: () => import('./TabComponent.vue') },
   data: () => ({
     drawer: null,
     selected: 2,
   }),
+  computed: {
+    ...mapState(['menuItems', 'selectedStep']),
+  },
+  mounted() {
+    this.createMenuItems()
+    this.updateSelectedStep(this.selected)
+  },
   methods: {
     step(next = true) {
       if (next) this.selected++
       if (!next) this.selected--
       this.updateSelectedStep(this.selected)
     },
-    ...mapActions(["updateSelectedStep", "createMenuItems"]),
-  },
-  computed: {
-    ...mapState(["menuItems", "selectedStep"]),
-  },
-  mounted() {
-    this.createMenuItems()
-    this.updateSelectedStep(this.selected)
+    ...mapActions(['updateSelectedStep', 'createMenuItems']),
   },
 }
 </script>

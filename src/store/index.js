@@ -1,7 +1,7 @@
-import Vue from "vue"
-import Vuex from "vuex"
-import mockData from "../assets/mockData.json"
-import Config from "../assets/Config.js"
+import Vue from 'vue'
+import Vuex from 'vuex'
+import mockData from '../assets/mockData.json'
+import Config from '../assets/Config.js'
 
 Vue.use(Vuex)
 
@@ -46,24 +46,24 @@ export default new Vuex.Store({
   },
   actions: {
     updateSelectedStep(context, payload) {
-      context.commit("setSelectedStep", payload)
+      context.commit('setSelectedStep', payload)
     },
     updateSelectedBehaviorList(context, { newList, index }) {
       newList.splice(index, 0, {
-        prefix: "If I",
-        firstEvent: "look at the sky",
-        connection: "then I will",
-        secondEvent: "count clouds",
+        prefix: 'If I',
+        firstEvent: 'look at the sky',
+        connection: 'then I will',
+        secondEvent: 'count clouds',
       })
       newList.forEach((row, index) => {
         row.label = `Rule no. ${index}`
       })
-      context.commit("setBehaviorList", { newList })
+      context.commit('setBehaviorList', { newList })
     },
     createMenuItems(context) {
       const result = []
       Config.map((item) => result.push(item.menuItem))
-      context.commit("setMenuItems", result)
+      context.commit('setMenuItems', result)
     },
   },
   modules: {},

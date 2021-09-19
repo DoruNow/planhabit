@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import Config from "../assets/Config"
+import Config from '../assets/Config'
 
 export default {
   data() {

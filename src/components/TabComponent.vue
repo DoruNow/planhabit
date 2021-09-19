@@ -13,8 +13,8 @@
       color="white"
       slider-color="white"
     >
-      <v-tab v-for="tab in config.tabs" :key="tab.id">
-        {{ tab.name }}
+      <v-tab v-for="title in config.tabs" :key="title.id">
+        {{ title.name }}
       </v-tab>
     </v-tabs>
 
@@ -27,16 +27,16 @@
 </template>
 
 <script>
-import BehaviorListComponent from "./BehaviorListComponent.vue"
-import ExplanationComponent from "./ExplanationComponent.vue"
-import CreateNewConnections from "./CreateNewConnections.vue"
+import BehaviorListComponent from './BehaviorListComponent.vue'
+import ExplanationComponent from './ExplanationComponent.vue'
+import CreateNewConnections from './CreateNewConnections.vue'
 
-import TODO from "./TODO.vue"
-import TODO1 from "./TODO1.vue"
-import TODO2 from "./TODO2.vue"
+import TODO from './TODO.vue'
+import TODO1 from './TODO1.vue'
+import TODO2 from './TODO2.vue'
 
-import { mapState } from "vuex"
-import Config from "../assets/Config"
+import { mapState } from 'vuex'
+import Config from '../assets/Config'
 
 export default {
   components: {
@@ -53,7 +53,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(["selectedStep"]),
+    ...mapState(['selectedStep']),
     config() {
       return Config[this.selectedStep]
     },
