@@ -12,16 +12,26 @@ export default new Vuex.Store({
     selectedBehaviorList: mockData.behaviorLists[0],
     selectedStep: null,
     uniqueHabitBuildingBlocks: mockData.uniqueHabitBuildingBlocks,
+    selected: 1,
+    raw: null
   },
   getters: {
     behaviorNamesList: (state) => {
-      return state.allBehaviorLists.map((list) => list.listName)
+      const names = []
+      state.allBehaviorLists.behaviorLists.forEach((list) => names.push(list.listName))
+      return names
     },
     behaviorListLength: (state) => {
       return state.selectedBehaviorList.behaviorList.length
     },
+    behaviorListRawLength: (state) => {
+      return state.selectedBehaviorList.behaviorListRaw.length
+    },
     isBehaviorList: (state) => {
       return state.selectedBehaviorList.behaviorList.length ? true : false
+    },
+    isBehaviorListRaw: (state) => {
+      return state.selectedBehaviorList.behaviorListRaw.length ? true : false
     },
   },
   mutations: {
@@ -34,6 +44,9 @@ export default new Vuex.Store({
     setBehaviorList(state, payload) {
       state.selectedBehaviorList.behaviorList = payload
     },
+    setRaw(state, payload) {
+      state.raw = payload
+    },
     setSelectedStep(state, payload) {
       state.selectedStep = payload
     },
@@ -43,6 +56,10 @@ export default new Vuex.Store({
     setUniqueHabitBuildingBlocks(state, payload) {
       state.uniqueHabitBuildingBlocks = payload
     },
+    setSelectedBehaviorListName(state, payload) {
+      console.log(payload)
+      state.selectedBehaviorList.listName = payload.listName
+    }
   },
   actions: {
     updateSelectedStep(context, payload) {

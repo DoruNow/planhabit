@@ -58,7 +58,7 @@ module.exports = [
         class: 'text-subtitle-1',
       },
       {
-        text: 'Let\'s start by focusing on a part of your day you want to improve. Choose a part of the day where your schedule is the most structuredand can be improved.I guess for most of us mornings are a good candidate.',
+        text: 'Let\'s start by focusing on a part of your day you want to improve. Choose a part of the day where your schedule is the most structuredand can be improved. I guess for most of us mornings are a good candidate.',
         class: 'text-subtitle-1',
       },
     ],

@@ -41,10 +41,9 @@ export default {
   components: { TabComponent: () => import('./TabComponent.vue') },
   data: () => ({
     drawer: null,
-    selected: 2,
   }),
   computed: {
-    ...mapState(['menuItems', 'selectedStep']),
+    ...mapState(['menuItems', 'selectedStep', 'selected']),
   },
   mounted() {
     this.createMenuItems()

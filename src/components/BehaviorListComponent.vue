@@ -3,7 +3,17 @@
     <v-row class="pt-6">
       <v-col>
         <v-row>
-          <v-col :md="isBehaviorList ? 12 : 6">
+          <v-col :md="isBehaviorList ? 12 : 6" class="d-flex flex-row">
+            <v-text-field
+              v-if="allBehaviorLists"
+              v-model="selectedBehaviorList.listName"
+              label="List name"
+              outlined
+              solo
+              md="4"
+              class="mx-2"
+              @change="setSelectedBehaviorListName"
+            ></v-text-field>
             <v-select
               v-if="allBehaviorLists"
               :items="behaviorNamesList"
@@ -11,11 +21,12 @@
               outlined
               solo
               md="4"
+              class="mx-2"
               @change="selectBehaviorList"
             ></v-select>
           </v-col>
         </v-row>
-        <ListComponent :list="selectedBehaviorList.behaviorList" />
+        <ListComponent :raw="true" />
         <v-text-field
           v-model="nextHabit.value"
           outlined
@@ -52,7 +63,7 @@
 
 <script>
 import ListComponent from './ListComponent.vue'
-import { mapGetters, mapState } from 'vuex'
+import { mapActions, mapGetters, mapMutations, mapState } from 'vuex'
 export default {
   components: {
     ListComponent,
@@ -60,27 +71,30 @@ export default {
   data() {
     return {
       nextHabit: { value: '' },
+      activeBehaviorList: null,
     }
   },
   computed: {
     ...mapGetters([
       'behaviorNamesList',
       'behaviorListLength',
+      'behaviorListRawLength',
       'isBehaviorList',
+      'isBehaviorListRaw',
     ]),
-    ...mapState(['allBehaviorLists', 'selectedBehaviorList']),
+    ...mapState(['allBehaviorLists', 'selectedBehaviorList', 'raw']),
     label() {
-      let label
-      this.isBehaviorList
-        ? (label = `Habit no. ${this.behaviorListLength + 1}`)
-        : (label = 'Type in your habit then hit enter')
-      return label
+      return this.isBehaviorListRaw
+        ? `Habit no. ${this.behaviorListRawLength + 1}`
+        : 'Type in your habit then hit enter'
     },
   },
   methods: {
+    ...mapActions(['updateBehaviorList']),
+    ...mapMutations(['setBehaviorList', 'setSelectedBehaviorListName']),
     saveHabit() {
       if (this.nextHabit.value === '') return
-      this.$store.commit('updateBehaviorList', {
+      this.updateBehaviorList({
         id: this.behaviorListLength,
         position: this.behaviorListLength + 1,
         label: `Habit no. ${this.behaviorListLength + 1}`,
@@ -89,14 +103,20 @@ export default {
       this.nextHabit.value = ''
     },
     selectBehaviorList(a) {
-      let b = this.allBehaviorLists.filter((list) => list.listName === a)
-      this.$store.commit({
-        type: 'setBehaviorList',
+      let idx = this.allBehaviorLists.indexOf((bl) => bl.listName === a)
+      if (this.allBehaviorLists[idx].behaviorList.length === 0) {
+        this.activeBehaviorList = this.allBehaviorLists[idx].behaviorListRaw
+      } else {
+        this.activeBehaviorList = this.allBehaviorLists[idx].behaviorList
+      }
+      this.allBehaviorLists.find((list, index) => {
+        list.listName === a
+        b = index
+      })
+      setBehaviorList({
         payload: b[0].behaviorList,
       })
     },
   },
 }
 </script>
-
-<style lang="scss" scoped></style>
