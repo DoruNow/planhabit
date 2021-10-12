@@ -43,17 +43,17 @@ export default {
     drawer: null,
   }),
   computed: {
-    ...mapState(['menuItems', 'selectedStep', 'selected']),
+    ...mapState(['menuItems', 'selectedStep']),
   },
   mounted() {
     this.createMenuItems()
-    this.updateSelectedStep(this.selected)
+    this.updateSelectedStep(this.selectedStep)
   },
   methods: {
     step(next = true) {
-      if (next) this.selected++
-      if (!next) this.selected--
-      this.updateSelectedStep(this.selected)
+      if (next) this.selectedStep++
+      if (!next) this.selectedStep--
+      this.updateSelectedStep(this.selectedStep)
     },
     ...mapActions(['updateSelectedStep', 'createMenuItems']),
   },

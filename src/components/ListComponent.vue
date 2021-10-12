@@ -28,12 +28,19 @@ export default {
     },
   },
   computed: {
-    ...mapState(['selectedBehaviorList', 'uniqueHabitBuildingBlocks']),
+    ...mapState([
+      'selectedBehaviorList',
+      'behaviorListRaw',
+      'uniqueHabitBuildingBlocks',
+    ]),
     list() {
       return this.raw
-        ? this.selectedBehaviorList.behaviorListRaw
+        ? this.behaviorListRaw
         : this.selectedBehaviorList.behaviorList
     },
+  },
+  created() {
+    this.$store.commit('setRaw', this.raw)
   },
 }
 </script>

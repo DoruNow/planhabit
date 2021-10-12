@@ -34,30 +34,41 @@
                     "connectionIndex": 0,
                     "secondEventIndex": 1
                 }
-            ],
-            "behaviorListRaw": [
-                {
-                    "id": "1",
-                    "value": "1/1"
-                },
-                {
-                    "id": "2",
-                    "value": "1/2"
-                }
             ]
         },
         {
             "id": 1,
             "listName": "second List",
-            "behaviorList": [],
-            "behaviorListRaw": [
+            "behaviorList": [
                 {
-                    "id": "1",
-                    "value": "2/1"
+                    "prefixIndex": 2,
+                    "firstEventIndex": 1,
+                    "connectionIndex": 0,
+                    "secondEventIndex": 1
                 },
                 {
-                    "id": "2",
-                    "value": "2/2"
+                    "prefixIndex": 2,
+                    "firstEventIndex": 1,
+                    "connectionIndex": 0,
+                    "secondEventIndex": 1
+                },
+                {
+                    "prefixIndex": 2,
+                    "firstEventIndex": 1,
+                    "connectionIndex": 0,
+                    "secondEventIndex": 1
+                },
+                {
+                    "prefixIndex": 2,
+                    "firstEventIndex": 1,
+                    "connectionIndex": 0,
+                    "secondEventIndex": 1
+                },
+                {
+                    "prefixIndex": 2,
+                    "firstEventIndex": 1,
+                    "connectionIndex": 0,
+                    "secondEventIndex": 1
                 }
             ]
         },
@@ -152,5 +163,6 @@
             "clean room",
             "count clouds"
         ]
-    }
+    },
+    "behaviorListRaw": []
 }

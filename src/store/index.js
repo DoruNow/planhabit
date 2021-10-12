@@ -7,42 +7,53 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    allBehaviorLists: mockData,
-    menuItems: [],
-    selectedBehaviorList: mockData.behaviorLists[0],
-    selectedStep: null,
+    behaviorListsIndexed: mockData.behaviorLists,
+    behaviorListRaw: mockData.behaviorListRaw,
     uniqueHabitBuildingBlocks: mockData.uniqueHabitBuildingBlocks,
-    selected: 1,
+    menuItems: [],
+    selectedBehaviorList: { behaviorList: [] },
+    selectedStep: 1,
     raw: null
   },
   getters: {
     behaviorNamesList: (state) => {
       const names = []
-      state.allBehaviorLists.behaviorLists.forEach((list) => names.push(list.listName))
+      state.behaviorListsIndexed.forEach((list) => names.push(list.listName))
       return names
     },
+    behaviorListsIndexedLength: (state) => {
+      return state.behaviorListsIndexed.length
+    },
+
     behaviorListLength: (state) => {
       return state.selectedBehaviorList.behaviorList.length
-    },
-    behaviorListRawLength: (state) => {
-      return state.selectedBehaviorList.behaviorListRaw.length
     },
     isBehaviorList: (state) => {
       return state.selectedBehaviorList.behaviorList.length ? true : false
     },
+
+    behaviorListRawLength: (state) => {
+      return state.behaviorListRaw.length
+    },
     isBehaviorListRaw: (state) => {
-      return state.selectedBehaviorList.behaviorListRaw.length ? true : false
+      return state.behaviorListRaw.length ? true : false
     },
   },
   mutations: {
-    updateBehaviorList(state, payload) {
-      state.selectedBehaviorList.behaviorList.push(payload)
+    updateBehaviorListRaw(state, payload) {
+      state.behaviorListRaw.push(payload)
+    },
+    addToBehaviorListRaw(state, payload) {
+      state.behaviorListRaw.push(payload)
+    },
+    undoBehaviorListRaw(state) {
+      state.behaviorListRaw.pop()
     },
     resetBehaviorList(state) {
-      state.selectedBehaviorList.behaviorList = []
+      state.behaviorListRaw = []
     },
     setBehaviorList(state, payload) {
-      state.selectedBehaviorList.behaviorList = payload
+      state.selectedBehaviorList = state.behaviorListsIndexed[payload]
     },
     setRaw(state, payload) {
       state.raw = payload
@@ -57,8 +68,10 @@ export default new Vuex.Store({
       state.uniqueHabitBuildingBlocks = payload
     },
     setSelectedBehaviorListName(state, payload) {
-      console.log(payload)
       state.selectedBehaviorList.listName = payload.listName
+    },
+    updateAppData(state, payload) {
+      Object.assign(state.data, payload)
     }
   },
   actions: {
