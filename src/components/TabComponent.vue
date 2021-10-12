@@ -13,13 +13,13 @@
       color="white"
       slider-color="white"
     >
-      <v-tab v-for="tab in config.tabs" :key="tab.name">
-        {{ tab.name }}
+      <v-tab v-for="title in config.tabs" :key="title.id">
+        {{ title.name }}
       </v-tab>
     </v-tabs>
 
     <v-tabs-items v-model="tab">
-      <v-tab-item v-for="component in config.tabs" :key="component.name">
+      <v-tab-item v-for="component in config.tabs" :key="component.id">
         <component :is="component.component"></component>
       </v-tab-item>
     </v-tabs-items>
@@ -27,22 +27,22 @@
 </template>
 
 <script>
-import BehaviorListComponent from "./BehaviorListComponent.vue";
-import ExplanationComponent from "./ExplanationComponent.vue";
-import Listing from "./Listing.vue";
+import BehaviorListComponent from './BehaviorListComponent.vue'
+import ExplanationComponent from './ExplanationComponent.vue'
+import CreateNewConnections from './CreateNewConnections.vue'
 
-import TODO from "./TODO.vue";
-import TODO1 from "./TODO1.vue";
-import TODO2 from "./TODO2.vue";
+import TODO from './TODO.vue'
+import TODO1 from './TODO1.vue'
+import TODO2 from './TODO2.vue'
+
+import { mapState } from 'vuex'
+import Config from '../assets/Config'
 
 export default {
-  props: {
-    config: Object,
-  },
   components: {
     BehaviorListComponent,
     ExplanationComponent,
-    Listing,
+    CreateNewConnections,
     TODO,
     TODO1,
     TODO2,
@@ -50,9 +50,15 @@ export default {
   data() {
     return {
       tab: null,
-    };
+    }
   },
-};
+  computed: {
+    ...mapState(['selectedStep']),
+    config() {
+      return Config[this.selectedStep]
+    },
+  },
+}
 </script>
 
 <style lang="scss" scoped></style>

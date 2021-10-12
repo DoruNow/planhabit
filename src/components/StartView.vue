@@ -6,10 +6,10 @@
 
       <v-list>
         <v-list-item
-          v-for="menuItem in menuItems"
+          v-for="(menuItem, index) in menuItems"
           :key="menuItem"
           link
-          @click="selectMenuItem(menuItem)"
+          @click="updateSelectedStep(index)"
         >
           <v-list-item-icon>
             <v-icon></v-icon>
@@ -26,10 +26,7 @@
       <v-container class="py-8 px-6">
         <v-row>
           <v-col cols="12">
-            <TabComponent
-              :config="Config[$store.state.selectedStep]"
-              v-on:selectStep="selected = $event"
-            />
+            <TabComponent />
           </v-col>
         </v-row>
       </v-container>
@@ -38,37 +35,29 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
-import Config from "../assets/Config";
+import { mapActions, mapState } from 'vuex'
 
 export default {
-  components: { TabComponent: () => import("./TabComponent.vue") },
+  components: { TabComponent: () => import('./TabComponent.vue') },
   data: () => ({
-    Config,
     drawer: null,
-    selected: 1,
   }),
-  methods: {
-    step(next = true) {
-      if (next) this.selected++;
-      if (!next) this.selected--;
-      this.$store.commit("setSelectedStep", this.selected);
-    },
-    selectMenuItem(menuItem) {
-      let index = this.menuItems.findIndex((item) => item === menuItem);
-      this.$store.commit("setSelectedStep", {
-        payload: index,
-      });
-    },
-  },
   computed: {
-    ...mapState(["menuItems", "selectedStep"]),
+    ...mapState(['menuItems', 'selectedStep']),
   },
   mounted() {
-    this.$store.commit("setSelectedStep", { payload: this.selected });
-    this.$store.commit("setMenuItems");
+    this.createMenuItems()
+    this.updateSelectedStep(this.selectedStep)
   },
-};
+  methods: {
+    step(next = true) {
+      if (next) this.selectedStep++
+      if (!next) this.selectedStep--
+      this.updateSelectedStep(this.selectedStep)
+    },
+    ...mapActions(['updateSelectedStep', 'createMenuItems']),
+  },
+}
 </script>
 
 <style lang="sass" scoped>
