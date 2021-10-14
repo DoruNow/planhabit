@@ -1,148 +1,35 @@
 {
-    "behaviorLists": [
+    "behaviorListRaw": [],
+    "behaviorListIndexed": [
         {
-            "id": 0,
-            "listName": "First Lists",
-            "behaviorList": [
-                {
-                    "prefixIndex": 2,
-                    "firstEventIndex": 1,
-                    "connectionIndex": 0,
-                    "secondEventIndex": 1
-                },
-                {
-                    "prefixIndex": 2,
-                    "firstEventIndex": 1,
-                    "connectionIndex": 0,
-                    "secondEventIndex": 1
-                },
-                {
-                    "prefixIndex": 2,
-                    "firstEventIndex": 1,
-                    "connectionIndex": 0,
-                    "secondEventIndex": 1
-                },
-                {
-                    "prefixIndex": 2,
-                    "firstEventIndex": 1,
-                    "connectionIndex": 0,
-                    "secondEventIndex": 1
-                },
-                {
-                    "prefixIndex": 2,
-                    "firstEventIndex": 1,
-                    "connectionIndex": 0,
-                    "secondEventIndex": 1
-                }
-            ]
+            "prefixIndex": 2,
+            "firstEventIndex": 1,
+            "connectionIndex": 0,
+            "secondEventIndex": 1
         },
         {
-            "id": 1,
-            "listName": "second List",
-            "behaviorList": [
-                {
-                    "prefixIndex": 2,
-                    "firstEventIndex": 1,
-                    "connectionIndex": 0,
-                    "secondEventIndex": 1
-                },
-                {
-                    "prefixIndex": 2,
-                    "firstEventIndex": 1,
-                    "connectionIndex": 0,
-                    "secondEventIndex": 1
-                },
-                {
-                    "prefixIndex": 2,
-                    "firstEventIndex": 1,
-                    "connectionIndex": 0,
-                    "secondEventIndex": 1
-                },
-                {
-                    "prefixIndex": 2,
-                    "firstEventIndex": 1,
-                    "connectionIndex": 0,
-                    "secondEventIndex": 1
-                },
-                {
-                    "prefixIndex": 2,
-                    "firstEventIndex": 1,
-                    "connectionIndex": 0,
-                    "secondEventIndex": 1
-                }
-            ]
+            "prefixIndex": 2,
+            "firstEventIndex": 1,
+            "connectionIndex": 0,
+            "secondEventIndex": 1
         },
         {
-            "id": 2,
-            "listName": "third List",
-            "behaviorList": [
-                {
-                    "prefixIndex": 2,
-                    "firstEventIndex": 1,
-                    "connectionIndex": 0,
-                    "secondEventIndex": 1
-                },
-                {
-                    "prefixIndex": 2,
-                    "firstEventIndex": 1,
-                    "connectionIndex": 0,
-                    "secondEventIndex": 1
-                },
-                {
-                    "prefixIndex": 2,
-                    "firstEventIndex": 1,
-                    "connectionIndex": 0,
-                    "secondEventIndex": 1
-                },
-                {
-                    "prefixIndex": 2,
-                    "firstEventIndex": 1,
-                    "connectionIndex": 0,
-                    "secondEventIndex": 1
-                },
-                {
-                    "prefixIndex": 2,
-                    "firstEventIndex": 1,
-                    "connectionIndex": 0,
-                    "secondEventIndex": 1
-                }
-            ]
+            "prefixIndex": 2,
+            "firstEventIndex": 1,
+            "connectionIndex": 0,
+            "secondEventIndex": 1
         },
         {
-            "id": 3,
-            "listName": "fourth List",
-            "behaviorList": [
-                {
-                    "prefixIndex": 2,
-                    "firstEventIndex": 1,
-                    "connectionIndex": 0,
-                    "secondEventIndex": 1
-                },
-                {
-                    "prefixIndex": 2,
-                    "firstEventIndex": 1,
-                    "connectionIndex": 0,
-                    "secondEventIndex": 1
-                },
-                {
-                    "prefixIndex": 2,
-                    "firstEventIndex": 1,
-                    "connectionIndex": 0,
-                    "secondEventIndex": 1
-                },
-                {
-                    "prefixIndex": 2,
-                    "firstEventIndex": 1,
-                    "connectionIndex": 0,
-                    "secondEventIndex": 1
-                },
-                {
-                    "prefixIndex": 2,
-                    "firstEventIndex": 1,
-                    "connectionIndex": 0,
-                    "secondEventIndex": 1
-                }
-            ]
+            "prefixIndex": 2,
+            "firstEventIndex": 1,
+            "connectionIndex": 0,
+            "secondEventIndex": 1
+        },
+        {
+            "prefixIndex": 2,
+            "firstEventIndex": 1,
+            "connectionIndex": 0,
+            "secondEventIndex": 1
         }
     ],
     "uniqueHabitBuildingBlocks": {
@@ -151,18 +38,9 @@
             "When I",
             "While I"
         ],
-        "firstEvents": [
-            "start working",
-            "look at the sky"
-        ],
         "connections": [
             "I will",
             "then I will"
-        ],
-        "secondEvents": [
-            "clean room",
-            "count clouds"
         ]
-    },
-    "behaviorListRaw": []
+    }
 }

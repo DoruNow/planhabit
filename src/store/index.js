@@ -7,31 +7,22 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    behaviorListsIndexed: mockData.behaviorLists,
+    behaviorListIndexed: mockData.behaviorLists,
     behaviorListRaw: mockData.behaviorListRaw,
     uniqueHabitBuildingBlocks: mockData.uniqueHabitBuildingBlocks,
     menuItems: [],
-    selectedBehaviorList: { behaviorList: [] },
     selectedStep: 1,
     raw: null
   },
   getters: {
     behaviorNamesList: (state) => {
       const names = []
-      state.behaviorListsIndexed.forEach((list) => names.push(list.listName))
+      state.behaviorListIndexed.forEach((list) => names.push(list.listName))
       return names
     },
-    behaviorListsIndexedLength: (state) => {
-      return state.behaviorListsIndexed.length
+    behaviorListIndexedLength: (state) => {
+      return state.behaviorListIndexed.length
     },
-
-    behaviorListLength: (state) => {
-      return state.selectedBehaviorList.behaviorList.length
-    },
-    isBehaviorList: (state) => {
-      return state.selectedBehaviorList.behaviorList.length ? true : false
-    },
-
     behaviorListRawLength: (state) => {
       return state.behaviorListRaw.length
     },
@@ -53,7 +44,7 @@ export default new Vuex.Store({
       state.behaviorListRaw = []
     },
     setBehaviorList(state, payload) {
-      state.selectedBehaviorList = state.behaviorListsIndexed[payload]
+      state.selectedBehaviorList = state.behaviorListIndexed[payload]
     },
     setRaw(state, payload) {
       state.raw = payload
