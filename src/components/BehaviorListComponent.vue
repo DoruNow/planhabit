@@ -55,12 +55,8 @@ export default {
     }
   },
   computed: {
-    ...mapGetters([
-      'behaviorListRawLength',
-      'isBehaviorList',
-      'isBehaviorListRaw',
-    ]),
-    ...mapState(['behaviorListsIndexed', 'selectedBehaviorList', 'raw']),
+    ...mapGetters(['behaviorListRawLength', 'isBehaviorListRaw']),
+    ...mapState(['behaviorListIndexed', 'raw']),
     label() {
       return this.isBehaviorListRaw
         ? `Habit no. ${this.behaviorListRawLength + 1}`

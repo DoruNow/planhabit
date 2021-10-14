@@ -7,12 +7,6 @@
     </div>
     <div v-else>
       <v-list-item v-for="(habitBlock, index) in list" :key="index">
-        {{ uniqueHabitBuildingBlocks.prefixes[habitBlock.prefixIndex] }}
-        {{ uniqueHabitBuildingBlocks.firstEvents[habitBlock.firstEventIndex] }}
-        {{ uniqueHabitBuildingBlocks.connections[habitBlock.connectionIndex] }}
-        {{
-          uniqueHabitBuildingBlocks.secondEvents[habitBlock.secondEventIndex]
-        }}
       </v-list-item>
     </div>
   </v-list>
@@ -28,15 +22,9 @@ export default {
     },
   },
   computed: {
-    ...mapState([
-      'selectedBehaviorList',
-      'behaviorListRaw',
-      'uniqueHabitBuildingBlocks',
-    ]),
+    ...mapState(['behaviorListRaw', 'uniqueHabitBuildingBlocks']),
     list() {
-      return this.raw
-        ? this.behaviorListRaw
-        : this.selectedBehaviorList.behaviorList
+      return this.behaviorListRaw
     },
   },
   created() {

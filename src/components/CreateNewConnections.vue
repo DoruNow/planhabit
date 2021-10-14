@@ -8,7 +8,7 @@
             class="text-h5"
             label="List Name:"
             :value="selectedBehaviorList.listName"
-            :v-model="newList.listName"
+            :v-model="newLists.listName"
           ></v-text-field>
         </v-col>
       </v-row>
@@ -19,22 +19,26 @@
       <v-row class="d-flex flex-row">
         <v-select
           :items="uniqueHabitBuildingBlocks.prefixes"
-          label="Solo field"
+          label="Prefix"
           solo
         ></v-select>
         <v-select
-          :items="uniqueHabitBuildingBlocks.firstEvents"
-          label="Solo field"
+          :items="behaviorListRaw"
+          item-text="value"
+          item-value="id"
+          label="Habit"
           solo
         ></v-select>
         <v-select
           :items="uniqueHabitBuildingBlocks.connections"
-          label="Solo field"
+          label="Connection"
           solo
         ></v-select>
         <v-select
-          :items="uniqueHabitBuildingBlocks.secondEvents"
-          label="Solo field"
+          :items="behaviorListRaw"
+          item-text="value"
+          item-value="id"
+          label="Habit"
           solo
         ></v-select>
       </v-row>
@@ -66,17 +70,19 @@ export default {
   },
   data() {
     return {
-      newList: {
-        listName: '',
-      },
+      newLists: [],
     }
   },
   computed: {
-    ...mapState(['selectedBehaviorList', 'uniqueHabitBuildingBlocks']),
+    ...mapState([
+      'selectedBehaviorList',
+      'uniqueHabitBuildingBlocks',
+      'behaviorListRaw',
+    ]),
   },
   methods: {
     addRow(index) {
-      this.updateSelectedBehaviorList({ newList: this.newlist, index })
+      this.updateSelectedBehaviorList({ newLists: this.newLists, index })
     },
     ...mapActions(['updateSelectedBehaviorList']),
   },
